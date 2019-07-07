@@ -1,0 +1,12 @@
+---
+# tasks file for apparmor
+- name: Installing apparmor and dependencies
+  package:
+    state: present
+    name: "{{ item }}"
+  with_items:
+    - apparmor
+    - apparmor-utils
+    - apparmor-profiles
+    - apparmor-profiles-extra
+  notify: apparmor installed

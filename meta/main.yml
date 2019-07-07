@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  author: "Alberto Vázquez"
+  description: "Ansible role to install apparmor"
+
+  license: "GPLv2"
+
+  min_ansible_version: "2.4"
+
+  platforms:
+    - name: "Debian"
+      versions:
+        - "stretch"
+
+  galaxy_tags:
+    - "system"
+    - "security"
+    - "apparmor"
+    - "program restriction"
+
+dependencies: []

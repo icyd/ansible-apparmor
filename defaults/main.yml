@@ -1,0 +1,3 @@
+---
+# defaults file for apparmor
+apparmor_allow_reboot: false
