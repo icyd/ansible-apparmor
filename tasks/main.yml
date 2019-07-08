@@ -10,3 +10,21 @@
     - apparmor-profiles
     - apparmor-profiles-extra
   notify: apparmor installed
+- name: Add apparmor variables to GRUB
+  lineinfile:
+    dest: /etc/default/grub
+    state: present
+    backrefs: "{{ item.backrefs }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    insertbefore: "{{ item.insertbefore }}"
+  with_items:
+    - regexp: '^GRUB_CMDLINE_LINUX_APPARMOR='
+      line: 'GRUB_CMDLINE_LINUX_APPARMOR="apparmor=1 security=apparmor"'
+      insertbefore: '^GRUB_CMDLINE_LINUX='
+      backrefs: no
+    - regexp: '^GRUB_CMDLINE_LINUX="((?!\$GRUB_CMDLINE_LINUX_APPARMOR).*)$'
+      line: 'GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX_APPARMOR \1'
+      insertbefore: ''
+      backrefs: yes
+  notify: regenerate grub
