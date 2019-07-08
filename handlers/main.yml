@@ -8,4 +8,4 @@
   notify: reboot machine
 - name: reboot machine
   reboot:
-  when: "{{ apparmor_allow_reboot | bool }}"
+  when: "apparmor_allow_reboot | bool"
